@@ -48,17 +48,17 @@ class FirstViewController: UIViewController, UITableViewDelegate {
         
         return cell
     }
-    
+    //function that allows for cells to be deleted
     func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-        
+        //checks to see if left swipe has happened
         if editingStyle == UITableViewCellEditingStyle.Delete {
-            
+            //if so, remove that item in that row
             toDoList.removeAtIndex(indexPath.row)
-            
-//            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
-            
+            //create fade animation
+            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
+            //update user defaults persistent data
             NSUserDefaults.standardUserDefaults().setObject(toDoList, forKey: "toDoList")
-            
+            //reload the table view
             toDoListTable.reloadData()
         }
     }
